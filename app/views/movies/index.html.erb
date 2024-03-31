@@ -1,6 +1,23 @@
-<h1>hi</h1>
+<h1>Movies</h1>
 
-<%= simple_form_for Movie.new do |f| %>
-  <%= f.input :title %>
-  <%= f.submit 'Submit' %>
+<%# <%= form_tag(movies_path, method: :get) do 
+  <%= text_field_tag :movie_title, params[:movie_title], placeholder: 'Enter movie title' 
+  <%= submit_tag 'Search' 
+<% end %> 
+
+<% if @movies.any? %>
+  <% @movies.each do |movie| %>
+    <div>
+      
+      <p>Title: <%= movie['title'] %></p>
+      <% if movie['poster_path'].present? %>
+        <%= image_tag("https://image.tmdb.org/t/p/w500#{movie['poster_path']}", size: '100x150') %>
+      <% end %>
+      <p>ID: <%= movie['id'] %></p>
+      <p>Release Date: <%= movie['release_date'] %></p>
+      <br/>
+    </div>
+  <% end %>
+<% else %>
+  <p>No movies found</p>
 <% end %>
