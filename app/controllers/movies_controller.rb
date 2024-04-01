@@ -4,13 +4,14 @@ class MoviesController < ApplicationController
       if params[:movie_title].present?
         @movies = Tmdb::SearchService.execute(title: params[:movie_title])
       else
-        @movies=[]
+        @movies= Tmdb::AllService.execute()
       end
     end
 
-    def create
-        @title =Movie.create(movie_params)
-        redirect_to root_path
+    def show
+      
+      @movie = Tmdb::DetailService.execute(id: params[:id])
+
     end
   
     private

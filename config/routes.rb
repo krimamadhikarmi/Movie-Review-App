@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   # root "home#index"
   # Defines the root path route ("/")
   root "movies#index"
-  resources :movies 
+  resources :movies do
+    resources :reviews
+    post 'create_review', on: :member
+  end
 end
