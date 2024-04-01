@@ -1,9 +1,8 @@
 <% if @movies.any? %>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-5">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-5 mb-4">
     <% @movies.each do |movie| %>
       <div class="border border-gray-300 p-4 hover:shadow-lg hover:shadow-gray-900 transition duration-300 transform hover:scale-105">
         <%= link_to movie_path(movie['id']) , class: 'block' do %>
-          
           <% if movie['poster_path'].present? %>
             <%= image_tag("https://image.tmdb.org/t/p/w500#{movie['poster_path']}", class: 'w-full h-auto mb-2 w-full h-auto mb-2') %>
           <% end %>
