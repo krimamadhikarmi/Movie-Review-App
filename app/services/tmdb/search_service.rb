@@ -1,26 +1,24 @@
+require 'pagy'
 module Tmdb
     class SearchService < BaseService
-        def initialize(title)
-            @title = title
-        end
+      def initialize(title, page)
+        @title = title
+        @page = page || 1
+      end
         private_class_method :new
-        def self.execute(title: )
-            new(title).execute
+        def self.execute(title:, page: nil)
+          new(title, page).execute
         end
-  
-      #   def execute
-      #       url = URI("https://api.themoviedb.org/3/search/movie?query=#{@title}")
-      #       response = get_request(url: url)
-      #       @movies=JSON.parse(response.body)
-      #       @movies
-      #   end
   
         def execute
-          url = URI("https://api.themoviedb.org/3/search/movie?query=#{@title}")
+          url = URI("https://api.themoviedb.org/3/search/movie?query=#{@title}&page=#{@page}")
           response = get_request(url: url)
           parsed_response = JSON.parse(response.body)
           @movies = parsed_response["results"] || [] # Ensure @movies is an array even if no results are found
+          pagy = Pagy.new(count: @movies.count, page: @page)
+          [pagy, @movies]
         end
   
     end
     end
+

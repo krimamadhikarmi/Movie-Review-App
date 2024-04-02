@@ -14,3 +14,6 @@
 <% else %>
   <p>No movies found</p>
 <% end %>
+<div class="mt-10 flex justify-center">
+  <%== pagy_nav(@pagy) if @pagy %>
+</div>
