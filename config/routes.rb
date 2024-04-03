@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :movies do
+        resources :reviews,only: [:index]
+      end
+    end
+  end
   devise_for :users
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -11,5 +18,5 @@ Rails.application.routes.draw do
    root "movies#index"
    resources :movies do
     resources :reviews
-  end
+   end
 end
