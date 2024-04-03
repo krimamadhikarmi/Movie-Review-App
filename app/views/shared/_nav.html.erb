@@ -1,8 +1,11 @@
-
-<nav class="bg-white border-gray-200 font-dosis mb-14">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1 md:p-4 mb-5 ">
-    <a href="/" class="flex items-center space-x-3 ">
-      <span class="self-center text-2xl font-semibold whitespace-nowrap font-pacifico text-[35px] tracking-[2px] text-black">Movie Review</span>
+<nav class="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 border-gray-200 font-dosis mb-14 fixed top-0 w-full z-50 shadow-md">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1 md:p-4">
+    <a href="/" class="flex items-center space-x-3">
+      <span class="self-center text-3xl font-semibold whitespace-nowrap font-pacifico text-white ml-8">
+        Movie Review
+        <i class="fa-solid fa-film" style="width: 32px; height: 32px; margin-left: 8px;"></i>
+      </span>
+      
     </a>
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
@@ -10,44 +13,43 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
         </svg>
     </button>
-    <div class="hidden w-full md:block md:w-auto mt-2 " id="navbar-default">
-      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white">
+    <div class="hidden w-full md:block md:w-auto mt-2" id="navbar-default">
+      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 bg-gradient-to-r from-pink-500 to-red-500">
         <% if current_user %>
-       <div class="flex justify-center mr-60">
+       <div class="flex justify-center mr-36">
             <%= form_tag(movies_path, method: :get) do %>
-              <%= text_field_tag :movie_title, params[:movie_title], placeholder: 'Enter movie title',class: "rounded-l-lg p-4 border-t border-b border-l border-black text-gray-800 border-gray-200 bg-white", style: "width: 200px; height: 30px;"%>
-              <%= submit_tag 'Search', class: "px-4  py-1 bg-gray-800 text-white rounded-r-lg hover:bg-gray-600" %>
+              <%= text_field_tag :movie_title, params[:movie_title], placeholder: 'Enter movie title',class: "rounded-l-lg p-4 border-t border-b border-l border-black text-gray-800 border-gray-200 bg-white", style: "width: 350px; height: 40px;"%>
+              <%= submit_tag 'Search', class: "px-4 py-1 bg-gray-800 text-white rounded-r-lg hover:bg-gray-600 ",style:"height:40px;" %>
             <% end %>
         </div>
         <div class="flex items-center">
-          <li class="mr-4">
+          <li class="mr-8">
             <%= link_to edit_user_registration_path, class: "relative z-30 flex flex-col items-center px-2 font-body text-sm font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary" do %>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
-              <span>Edit Profile</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="25" height="25"style="fill: white;"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+              <span style="color: white;">Edit Profile</span>
             <% end %>
           </li>
-          <li>
+          <li class="mr-8">
            <%= link_to destroy_user_session_path, method: :delete, class: "relative z-30 flex flex-col items-center px-2 font-body text-sm font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary", data: { turbo_confirm: 'Are you sure?', "turbo-method": :delete } do %>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/></svg>
-              Sign Out
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="25" height="25"style="fill: white;"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/></svg>
+              <span style="color: white;">Sign Out</span>
             <% end %>
           </li>
-        <% else %>
+         <% else %>
           <li>
             <%= link_to(new_user_registration_path, class: "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary") do %>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-6 h-6 inline-block mr-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="fill: white;" class="w-6 h-6 inline-block mr-2">
                 <path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>
               </svg>
-              Sign Up
+              <span style="color: white;">Sign Up</span>
             <% end %>
-
           </li>
           <li>
             <%= link_to(new_user_session_path, class: "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary") do %>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 inline-block mr-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="fill: white;" class="w-6 h-6 inline-block mr-2">
                 <path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
               </svg>
-              Log In
+              <span style="color: white;">Log In</span>
             <% end %>
           </li>
         <% end %>

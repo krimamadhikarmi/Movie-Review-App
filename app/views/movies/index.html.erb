@@ -1,19 +1,21 @@
-<% if @movies.any? %>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-5 mb-4">
-    <% @movies.each do |movie| %>
-      <div class="border border-gray-300 p-4 hover:shadow-lg hover:shadow-gray-900 transition duration-300 transform hover:scale-105">
-        <%= link_to movie_path(movie['id']) , class: 'block' do %>
-          <% if movie['poster_path'].present? %>
-            <%= image_tag("https://image.tmdb.org/t/p/w500#{movie['poster_path']}", class: 'w-full h-auto mb-2 w-full h-auto mb-2') %>
+<div class="bg-purple-200">
+  <% if @movies.any? %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-12 mb-4 pt-32">
+      <% @movies.each do |movie| %>
+        <div class="border border-purple-200 p-4 rounded-lg  hover:shadow-lg hover:shadow-gray-900 transition duration-300 transform hover:scale-110 mb-4">
+          <%= link_to movie_path(movie['id']) , class: 'block' do %>
+            <% if movie['poster_path'].present? %>
+              <%= image_tag("https://image.tmdb.org/t/p/w500#{movie['poster_path']}", class: 'w-full h-auto mb-2 w-full h-auto mb-2 rounded-lg ') %>
+            <% end %>
+          <p class="text-center"><%= movie['title'] %></p>
           <% end %>
-         <p class="text-center"><%= movie['title'] %></p>
-        <% end %>
-      </div>
-    <% end %> 
+        </div>
+      <% end %> 
+    </div>
+  <% else %>
+    <p>No movies found</p>
+  <% end %>
+  <div class="mt-4 flex justify-center bg-purple-200">
+    <%== pagy_nav(@pagy) if @pagy %>
   </div>
-<% else %>
-  <p>No movies found</p>
-<% end %>
-<div class="mt-10 flex justify-center">
-  <%== pagy_nav(@pagy) if @pagy %>
 </div>
