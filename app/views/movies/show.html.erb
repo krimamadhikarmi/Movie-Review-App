@@ -45,7 +45,7 @@
     <div class="px-10 py-2 mt-8 max-w-lg mx-auto ml-40">
       <h2 class="text-2xl font-bold mb-4">Reviews</h2>
         <% @movie.reviews.each do |review| %>
-          <div class="border border-gray-300 p-4 mb-4 rounded-lg shadow">
+          <div class="border border-gray-300 p-4 mb-2 rounded-lg shadow">
             <div class="p-4 flex justify-between items-center">
               <div class="flex items-center">
                 <strong class="mr-2 text-lg text-gray-800 font-semibold"><%= review.user.email.split('@').first %></strong>
@@ -63,7 +63,7 @@
     </div>
     <%else%>
     <div class="px-10 py-10 mt-4 max-w-lg mx-auto ml-40">
-      <h2 class="text-xl font-bold mb-4">Reviews</h2>
+      <h2 class="text-xl font-bold mb-2">Reviews</h2>
         <p class="text-gray-700 px-3"><strong class="font-bold">No reviews yet. Be first to leave a review!</strong></p>
     </div>
     <% end %>
