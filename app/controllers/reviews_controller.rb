@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
 
   if @reviewcreate.save
     flash.now[:alert] = 'Review success.'
-    else
+  else
     flash.now[:alert] = 'Review could not be saved.'
 
   end
@@ -37,7 +37,6 @@ class ReviewsController < ApplicationController
     @review.destroy
     redirect_to movie_path(id: @movie.mid)
   end
-
 
   private
 
