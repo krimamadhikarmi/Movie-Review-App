@@ -1,10 +1,10 @@
 class Api::V1::ReviewsController < ApplicationController
     skip_before_action :verify_authenticity_token
-    before_action :authenticate_user_using_api_key
+    # before_action :authenticate_user_using_api_key,only: :create
     def index
         movie = Movie.find_by(mid: params[:movie_id])
         if movie
-            reviews = movie.reviews.map { |review| { user_id: review.user_id, description: review.description } }
+            reviews = movie.reviews.map { |review| { user_id:User.first.id, description: review.description } }
             render json: { movie_id: movie.mid,review_count: reviews.count, reviews: reviews }
         else
             moviecreate=fetch_movie(params[:movie_id])
@@ -22,9 +22,9 @@ class Api::V1::ReviewsController < ApplicationController
     def create
         movie = Movie.find_by(mid: params[:movie_id])
         if movie
-            reviews = Review.create(review_params.merge(user_id: @current_user.id, movie_id: movie.id))
+            reviews = Review.create(review_params.merge(user_id: User.first.id, movie_id: movie.id))
             if reviews.save
-                reviews = movie.reviews.map { |review| { user_id: review.user_id, description: review.description } }
+                reviews = movie.reviews.map { |review| { user_id: User.first.id, description: review.description } }
                 render json: { movie_id: movie.mid, reviews: reviews }
             else
                 render json: { error: "Reviews not create" }
@@ -34,10 +34,10 @@ class Api::V1::ReviewsController < ApplicationController
             if moviecreate['id']
                 create_movie_api(moviecreate)
                 movie = Movie.find_by(mid: params[:movie_id])
-                reviews = Review.create(review_params.merge(user_id: @current_user.id, movie_id: movie.id))
+                reviews = Review.create(review_params.merge(user_id: User.first.id, movie_id: movie.id))
                 
                 if reviews.save
-                    reviews = movie.reviews.map { |review| { user_id: review.user_id, description: review.description } }
+                    reviews = movie.reviews.map { |review| { user_id: User.first.id, description: review.description } }
                     render json: { movie_id: movie.mid, reviews: reviews }
                 else
                     render json: { error: "Reviews not create" }

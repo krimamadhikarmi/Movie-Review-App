@@ -10,14 +10,13 @@ module Tmdb
         end
   
         def execute
-          url = URI("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1#{@page}")
+          url = URI("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=#{@page}")
           response = get_request(url: url)
           parsed_response = JSON.parse(response.body)
           @movies = parsed_response["results"] || [] # Ensure @movies is an array even if no results are found
           pagy = Pagy.new(count: @movies.count, page: @page)
           [pagy, @movies]
         end
-  
     end
     end
 
